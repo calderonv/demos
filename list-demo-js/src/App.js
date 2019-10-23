@@ -9,19 +9,16 @@ import FilterList from "./components/FilterList";
 class App extends React.Component {
 
     state = {
-        items: []
+        items: [],
+        filteredItems: []
     };
 
     filterList = (filter) => {
         this.setState({
-            items: this.state.items.filter(
+            filteredItems: [...this.state.items.filter(
                 (item) => item.category.toLowerCase().includes(filter.toLowerCase())
-    )
+            )]
     })
-    };
-
-    clearFilter = () => {
-        this.fetchData();
     };
 
     componentDidMount() {
@@ -34,7 +31,10 @@ class App extends React.Component {
             .then(
                 (result) => {
                     console.log(result.items);
-                    this.setState({items: result.items});
+                    this.setState({
+                        items: result.items,
+                        filteredItems: result.items
+                    });
                 }
             )
     };
@@ -44,8 +44,8 @@ class App extends React.Component {
         <div className="App">
             <div className="container">
                 <ListAppHeader />
-                <FilterList filterList={this.filterList} resetFilter={this.clearFilter}/>
-                <List items={this.state.items}/>
+                <FilterList filterList={this.filterList}/>
+                <List items={this.state.filteredItems}/>
             </div>
         </div>
     );

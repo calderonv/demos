@@ -5,27 +5,17 @@ class FilterList extends React.Component {
         filter: ''
     };
 
-    onChange = (e) => this.setState( {filter: e.target.value});
-
-    onSubmit = (e) => {
-        e.preventDefault();
-        this.props.filterList(this.state.filter)
-    };
-
-    resetFilter = (e) => {
-        e.preventDefault();
-        this.setState({filter: ''});
-        this.props.resetFilter()
+    onChange = (e) => {
+        this.setState( {filter: e.target.value});
+        this.props.filterList(this.state.filter);
     };
 
     render() {
         return (
             <div>
-                <form style={{ display: 'flex' }} onSubmit={this.onSubmit}>
+                <form style={{ display: 'flex' }}>
                     <input type="text" name="category" placeholder="filter category..." style={{flex: '10'}}
-                           value={this.state.filter} onChange={this.onChange}/>
-                    <input type="Submit" value="Filter List" className="filterButton" style={{flex: '1'}}/>
-                    <input onClick={this.resetFilter} value="Reset Filter" className="filterButton" style={{flex: '1'}}/>
+                           value={this.state.filter} onChange={this.onChange} className="filterInput"/>
                 </form>
             </div>
             )

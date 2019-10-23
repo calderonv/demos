@@ -6,16 +6,9 @@
   padding: 0 1rem;
 }
 
-.filterButton {
+.filterInput {
   border: solid 1px gray;
   padding: 10px 10px;
-  display: inline-block;
-  background: cadetblue;
-  color: white;
-}
-
-.filterButton:hover {
-  background: darkcyan;
 }
 
 ul {
